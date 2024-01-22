@@ -1,11 +1,11 @@
 import * as React from "react";
 
 interface EmailTemplateProps {
-  firstName: string;
+  link: string;
 }
 
 export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  firstName,
+  link,
 }) => (
   <table>
     <thead>
@@ -65,7 +65,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                                 <tr>
                                   <td valign="top" align="center">
                                     <a
-                                      href={"xd"}
+                                      href={link}
                                       target="_blank"
                                       style={{
                                         display: "inline-block",

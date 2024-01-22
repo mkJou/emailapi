@@ -23,7 +23,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
       to: emails,
       subject: "Hello world",
-      react: EmailTemplate({ firstName: "John" }),
+      react: EmailTemplate({ link: query?.data?.link }),
     });
     console.log();
     if (error) {
