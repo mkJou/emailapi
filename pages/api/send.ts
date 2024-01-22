@@ -5,6 +5,8 @@ import NextCors from "nextjs-cors";
 const resend = new Resend("re_ZwvRCDxH_rCBD93udyRrSiivxEzZrjBGM");
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  const query = req.body;
+
   await NextCors(req, res, {
     // Options
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
@@ -12,14 +14,18 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
   });
 
+  let emails = [];
+
+  emails.push(query?.data?.email);
+
   try {
     const { data, error } = await resend.emails.send({
-      from: "Acme <onboarding@resend.dev>",
-      to: ["joalexint@gmail.com"],
+      from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
+      to: emails,
       subject: "Hello world",
       react: EmailTemplate({ firstName: "John" }),
     });
-
+    console.log();
     if (error) {
       res.status(400).json({ error });
     }
