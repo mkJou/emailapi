@@ -22,7 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const { data, error } = await resend.emails.send({
       from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
       to: emails,
-      subject: "Hello world",
+      subject:
+        "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
       react: EmailTemplate({ link: query?.data?.link }),
     });
     console.log();
