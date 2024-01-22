@@ -36,11 +36,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                         width: "100%",
                       }}
                     >
-                      <img
-                        src="cryptohuella_logo.png"
-                        width="30%"
-                        alt=""
-                      />
+                      <img src="cryptohuella_logo.png" width="30%" alt="" />
                     </div>
                     <p>¡Hola, estimado!</p>
                     <p>
@@ -51,11 +47,10 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                     </p>
                     <table
                       role="presentation"
-                      border="0"
-                      cellpadding="0"
-                      cellspacing="0"
+                      border={0}
+                      cellPadding={Number(0)}
+                      cellSpacing={0}
                       width="100%"
-                      minWidth="100%"
                     >
                       <tbody>
                         <tr>
@@ -63,16 +58,12 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                             <table
                               role="presentation"
                               border={0}
-                              cellpadding={0}
-                              cellspacing={0}
+                              cellPadding={Number(0)}
+                              cellSpacing={0}
                             >
                               <tbody>
                                 <tr>
-                                  <td
-                                    valign="top"
-                                    align="center"
-                                    bgColor="#0867ec"
-                                  >
+                                  <td valign="top" align="center">
                                     <a
                                       href={"xd"}
                                       target="_blank"
