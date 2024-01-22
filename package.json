@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "next": "latest",
+    "nextjs-cors": "^2.2.0",
     "react": "latest",
     "react-dom": "latest",
     "resend": "latest"
