@@ -1,107 +1,103 @@
+import {
+  Body,
+  Button,
+  Container,
+  Head,
+  Html,
+  Img,
+  Link,
+  Preview,
+  Section,
+  Text,
+} from "@react-email/components";
 import * as React from "react";
 
-interface EmailTemplateProps {
-  link: string;
+interface OtpTemplateProps {
+  link?: string;
 }
 
-export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
-  link,
-}) => (
-  <table>
-    <thead>
-      <tr></tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>&nbsp;</td>
-        <td className="container" width="600" valign="top">
-          <div className="content">
-            <span className="preheader" style={{ display: "none" }}>
-              This is preheader text.
-            </span>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td className="wrapper" valign="top">
-                    <div
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        width: "100%",
-                      }}
-                    >
-                      <img src="cryptohuella_logo.png" width="30%" alt="" />
-                    </div>
-                    <p>¡Hola, estimado!</p>
-                    <p>
-                      Un nuevo certificado/credencial se ha creado con este
-                      correo. Cryptohuella se encarga de notificarte para que
-                      estés al tanto. Si deseas ver dicho certificado/credencial
-                      puedes darle al botón "Ver certificado/credencial".
-                    </p>
-                    <table
-                      role="presentation"
-                      border={0}
-                      cellPadding={Number(0)}
-                      cellSpacing={0}
-                      width="100%"
-                    >
-                      <tbody>
-                        <tr>
-                          <td align="left" valign="top">
-                            <table
-                              role="presentation"
-                              border={0}
-                              cellPadding={Number(0)}
-                              cellSpacing={0}
-                            >
-                              <tbody>
-                                <tr>
-                                  <td valign="top" align="center">
-                                    <a
-                                      href={link}
-                                      target="_blank"
-                                      style={{
-                                        display: "inline-block",
-                                        fontSize: 16,
-                                        fontWeight: "bold",
-                                        margin: 0,
-                                        padding: "12px 24px",
-                                        textDecoration: "none",
-                                        backgroundColor: "#0867ec",
-                                        borderColor: "#0867ec",
-                                        color: "#ffffff",
-                                      }}
-                                    >
-                                      Ver Certificado/credencial
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
-                            </table>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                    <p>
-                      Si crees que es una transacción sospechosa, por favor
-                      comunicarte con nosotros a través de
-                      soporte@cryptohuella.com
-                    </p>
-                    <p>Un saludo, Bea.</p>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-);
+const baseUrl = `https://www.cryptohuella.com`;
+
+export const EmailTemplate = ({ link }: OtpTemplateProps) => {
+  return (
+    <Html>
+      <Head />
+
+      <Body style={main}>
+        <Container style={container}>
+          <img
+            src="https://i.imgur.com/nEDMn0q.png"
+            alt="Logo"
+            title="Logo"
+            style={{ display: "block" }}
+            width="80px"
+          />
+
+          <Section>
+            <Text style={text}>Hola estimado.</Text>
+            <Text style={text}>
+              Un nuevo certificado/credencial se ha creado con este correo.
+              Cryptohuella se encarga de notificarte para que estés al tanto. Si
+              deseas ver dicho certificado/credencial puedes darle al botón "Ver
+              certificado/credencial".
+            </Text>
+            <Button style={button} href={link}>
+              Ver certificado/credencial
+            </Button>
+            {/* <Text style={{ ...text, fontWeight: "700" }}>
+              Código OTP: {String(code)}
+            </Text> */}
+            <Text style={text}>
+              Si crees que es una transacción sospechosa, por favor comunicarte
+              con nosotros a través de soporte@cryptohuella.com
+            </Text>
+
+            <Text style={text}>
+              Un saludo. <br />
+              <br /> - Bea de Cryptohuella.
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
+  );
+};
+
+export default EmailTemplate;
+
+const main = {
+  backgroundColor: "#f6f9fc",
+  padding: "10px 0",
+};
+
+const container = {
+  backgroundColor: "#ffffff",
+  border: "1px solid #f0f0f0",
+  padding: "45px",
+};
+
+const text = {
+  fontSize: "16px",
+  fontFamily:
+    "'Open Sans', 'HelveticaNeue-Light', 'Helvetica Neue Light', 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif",
+  fontWeight: "300",
+  color: "#404040",
+  lineHeight: "26px",
+};
+
+const button = {
+  backgroundColor: "#007ee6",
+  borderRadius: "4px",
+  color: "#fff",
+  fontFamily: "'Open Sans', 'Helvetica Neue', Arial",
+  fontSize: "15px",
+  textDecoration: "none",
+  textAlign: "center" as const,
+  display: "block",
+  width: "210px",
+  padding: "14px 7px",
+};
+
+const anchor = {
+  textDecoration: "underline",
+};
