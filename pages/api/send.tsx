@@ -2,6 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { EmailTemplate } from "../../components/email-template";
 import { Resend } from "resend";
 import NextCors from "nextjs-cors";
+import { OtpTemplate } from "../../components/otpTemplate";
 const resend = new Resend("re_ZwvRCDxH_rCBD93udyRrSiivxEzZrjBGM");
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -16,16 +17,19 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
   let emails = [];
 
-  if (query?.type == 0) {
-    emails.push(query?.data?.email);
+  if (query?.otpCode == true) {
+    emails.push(query?.userInfo?.email);
 
     try {
       const { data, error } = await resend.emails.send({
-        from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
+        from: "Bot de Seguridad de Cryptohuella <seguridad@cryptohuella.com>",
         to: emails,
-        subject:
-          "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
-        react: EmailTemplate({ link: query?.data?.link }),
+        subject: "Código de OTP para firma electrónica en Cryptohuella",
+        react: OtpTemplate({
+          code: query?.code,
+          user: query?.userInfo,
+          hash: query?.hash,
+        }),
       });
 
       if (error) {
@@ -37,52 +41,74 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(400).json({ error });
     }
   } else {
-    Array.from(query?.data).forEach((db, index) => {
-      let inf = db as any;
+    if (query?.type == 0) {
+      emails.push(query?.data?.email);
 
-      emails.push({
-        data: inf?.data ? { ...inf?.data, hash: inf?.hash } : inf,
-        chain: query?.chain_id,
+      try {
+        const { data, error } = await resend.emails.send({
+          from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
+          to: emails,
+          subject:
+            "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
+          react: EmailTemplate({ link: query?.data?.link }),
+        });
+
+        if (error) {
+          return res.status(400).json({ error });
+        }
+
+        return res.status(200).json({ data });
+      } catch (error) {
+        return res.status(400).json({ error });
+      }
+    } else {
+      Array.from(query?.data).forEach((db, index) => {
+        let inf = db as any;
+
+        emails.push({
+          data: inf?.data ? { ...inf?.data, hash: inf?.hash } : inf,
+          chain: query?.chain_id,
+        });
       });
-    });
 
-    let blocks = [];
+      let blocks = [];
 
-    const printBlocks = async () => {
-      const files = Array.from(emails);
+      const printBlocks = async () => {
+        const files = Array.from(emails);
 
-      await Promise.all(
-        files.map(async (file) => {
-          let newL = [];
-          let newLink =
-            "https://cryptohuella.com/" +
-            String(file.chain) +
-            "/" +
-            String(file.data.hash);
-          try {
-            const { data, error } = await resend.emails.send({
-              from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
-              to: [String(file.data.EMAIL)],
-              subject:
-                "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
-              react: EmailTemplate({ link: newLink }),
-            });
+        await Promise.all(
+          files.map(async (file) => {
+            let newL = [];
+            let newLink =
+              "https://cryptohuella.com/" +
+              String(file.chain) +
+              "/" +
+              String(file.data.hash);
+            try {
+              const { data, error } = await resend.emails.send({
+                from: "Bea de Cryptohuella <notificaciones@cryptohuella.com>",
+                to: [String(file.data.EMAIL)],
+                subject:
+                  "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
+                react: EmailTemplate({ link: newLink }),
+              });
 
-            if (error) {
+              if (error) {
+                return res.status(400).json({ error });
+              }
+
+              blocks.push({ data });
+            } catch (error) {
               return res.status(400).json({ error });
             }
+          })
+        );
+      };
 
-            blocks.push({ data });
-          } catch (error) {
-            return res.status(400).json({ error });
-          }
-        })
-      );
-    };
+      const loadDocuments = await printBlocks();
 
-    const loadDocuments = await printBlocks();
-
-    return res.status(200).json(blocks);
+      return res.status(200).json(blocks);
+    }
   }
 
   //
