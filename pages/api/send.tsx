@@ -38,8 +38,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
   } else {
     Array.from(query?.data).forEach((db, index) => {
+      let inf = db as any;
+
       emails.push({
-        data: db?.data ? { ...db?.data, hash: db?.hash } : db,
+        data: inf?.data ? { ...inf?.data, hash: inf?.hash } : inf,
         chain: query?.chain_id,
       });
     });
