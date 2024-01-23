@@ -24,7 +24,7 @@ export const OtpTemplate = ({ code, user, hash }: OtpTemplateProps) => {
   return (
     <Html>
       <Head />
-      <Preview>Dropbox reset your password</Preview>
+      {/* <Preview>Dropbox reset your password</Preview> */}
       <Body style={main}>
         <Container style={container}>
           <img
