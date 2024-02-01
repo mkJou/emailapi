@@ -3,6 +3,7 @@ import { EmailTemplate } from "../../components/email-template";
 import { Resend } from "resend";
 import NextCors from "nextjs-cors";
 import { OtpTemplate } from "../../components/otpTemplate";
+import EventTemplate from "../../components/eventTemplate";
 const resend = new Resend("re_ZwvRCDxH_rCBD93udyRrSiivxEzZrjBGM");
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -51,6 +52,32 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           subject:
             "Un nuevo certificado/credencial se ha emitido con tu correo electrónico.",
           react: EmailTemplate({ link: query?.data?.link }),
+        });
+
+        if (error) {
+          return res.status(400).json({ error });
+        }
+
+        return res.status(200).json({ data });
+      } catch (error) {
+        return res.status(400).json({ error });
+      }
+    } else if (query?.type == 1) {
+      emails.push(query?.user?.email);
+      console.log(query?.chain)
+      try {
+        const { data, error } = await resend.emails.send({
+          from: "Cryptohuella <eventos@cryptohuella.com>",
+          to: emails,
+          subject:
+            String(query?.user?.name).split(" ")[0] +
+            ", hemos confirmado correctamente tu registro en el evento: " +
+            String(query?.event?.data?.name),
+          react: EventTemplate({
+            user: query?.user,
+            event: query?.event,
+            chain: query?.chain,
+          }),
         });
 
         if (error) {
