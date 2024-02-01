@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import NextCors from "nextjs-cors";
 import { OtpTemplate } from "../../components/otpTemplate";
 import EventTemplate from "../../components/eventTemplate";
+import EventFinishTemplate from "../../components/eventFinishTemplate";
 const resend = new Resend("re_ZwvRCDxH_rCBD93udyRrSiivxEzZrjBGM");
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -64,29 +65,54 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       }
     } else if (query?.type == 1) {
       emails.push(query?.user?.email);
-      console.log(query?.chain)
-      try {
-        const { data, error } = await resend.emails.send({
-          from: "Cryptohuella <eventos@cryptohuella.com>",
-          to: emails,
-          subject:
-            String(query?.user?.name).split(" ")[0] +
-            ", hemos confirmado correctamente tu registro en el evento: " +
-            String(query?.event?.data?.name),
-          react: EventTemplate({
-            user: query?.user,
-            event: query?.event,
-            chain: query?.chain,
-          }),
-        });
 
-        if (error) {
+      if (query?.status) {
+        try {
+          const { data, error } = await resend.emails.send({
+            from: "Cryptohuella <eventos@cryptohuella.com>",
+            to: emails,
+            subject:
+              String(query?.user?.name).split(" ")[0] +
+              ", te damos una cordial bienvenida al evento:" +
+              String(query?.event?.data?.name),
+            react: EventFinishTemplate({
+              user: query?.user,
+              event: query?.event,
+            }),
+          });
+
+          if (error) {
+            return res.status(400).json({ error });
+          }
+
+          return res.status(200).json({ data });
+        } catch (error) {
           return res.status(400).json({ error });
         }
+      } else {
+        try {
+          const { data, error } = await resend.emails.send({
+            from: "Cryptohuella <eventos@cryptohuella.com>",
+            to: emails,
+            subject:
+              String(query?.user?.name).split(" ")[0] +
+              ", hemos confirmado correctamente tu registro en el evento: " +
+              String(query?.event?.data?.name),
+            react: EventTemplate({
+              user: query?.user,
+              event: query?.event,
+              chain: query?.chain,
+            }),
+          });
 
-        return res.status(200).json({ data });
-      } catch (error) {
-        return res.status(400).json({ error });
+          if (error) {
+            return res.status(400).json({ error });
+          }
+
+          return res.status(200).json({ data });
+        } catch (error) {
+          return res.status(400).json({ error });
+        }
       }
     } else {
       Array.from(query?.data).forEach((db, index) => {
