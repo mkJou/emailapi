@@ -3,6 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 import NextCors from "nextjs-cors";
 import NormalEmail, { CertificateEmail } from "../../components/certificate";
+import NewUserInternal from "../../components/newUserInternal";
 // import { OtpTemplate } from "../../components/otpTemplate";
 // import EventTemplate from "../../components/eventTemplate";
 // import EventFinishTemplate from "../../components/eventFinishTemplate";
@@ -34,7 +35,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               const { data, error } = await resend.emails.send({
                 from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
                 to: String(file["email"]),
-                subject: String("Certificado #") + String(file["hash"]).substring(0, 8),
+                subject:
+                  String("Certificado #") +
+                  String(file["hash"]).substring(0, 8),
                 react: CertificateEmail({ data: file }),
               });
 
@@ -53,24 +56,43 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       const loadDocuments = await printBlocks();
 
       return res.json(blocks);
+    },
+    new_user_internal: async () => {
+      let blocks = [];
 
-      // try {
-      //   const { data, error } = await resend.emails.send({
-      //     from: "Notificación de Cryptohuella <notificacion@cryptohuella.com>",
-      //     to: "joalexint@gmail.com",
-      //     subject: emailInfo?.title,
-      //     react: NormalEmail({ data: dataArray, emailInfo: emailInfo }),
-      //   });
+      const printBlocks = async () => {
+        const files = Array.from(dataArray?.users);
 
-      //   if (error) {
-      //     return res.status(400).json({ error });
-      //   }
+        await Promise.all(
+          files.map(async (file) => {
+            let newL = [];
 
-      //   console.log("listo", data);
-      //   // return res.status(200).json({ data });
-      // } catch (error) {
-      //   return res.status(400).json({ error });
-      // }
+            try {
+              const { data, error } = await resend.emails.send({
+                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                to: String(file["email"]),
+                subject:
+                  String(file["chain_name"]) +
+                  ", te informa que ha sido creada una cuenta nueva asociada al correo: " +
+                  String(file["email"]),
+                react: NewUserInternal({ data: file }),
+              });
+
+              if (error) {
+                return res.status(400).json({ error });
+              }
+
+              blocks.push({ data });
+            } catch (error) {
+              return res.status(400).json({ error });
+            }
+          })
+        );
+      };
+
+      const loadDocuments = await printBlocks();
+
+      return res.json(blocks);
     },
   };
 
