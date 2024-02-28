@@ -4,6 +4,7 @@ import { Resend } from "resend";
 import NextCors from "nextjs-cors";
 import NormalEmail, { CertificateEmail } from "../../components/certificate";
 import NewUserInternal from "../../components/newUserInternal";
+import CredentialEmail from "../../components/credential";
 // import { OtpTemplate } from "../../components/otpTemplate";
 // import EventTemplate from "../../components/eventTemplate";
 // import EventFinishTemplate from "../../components/eventFinishTemplate";
@@ -39,6 +40,41 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                   String("Certificado #") +
                   String(file["hash"]).substring(0, 8),
                 react: CertificateEmail({ data: file }),
+              });
+
+              if (error) {
+                return res.status(400).json({ error });
+              }
+
+              blocks.push({ data });
+            } catch (error) {
+              return res.status(400).json({ error });
+            }
+          })
+        );
+      };
+
+      const loadDocuments = await printBlocks();
+
+      return res.json(blocks);
+    },
+    credential: async () => {
+      let blocks = [];
+
+      const printBlocks = async () => {
+        const files = Array.from(dataArray?.users);
+
+        await Promise.all(
+          files.map(async (file) => {
+            let newL = [];
+
+            try {
+              const { data, error } = await resend.emails.send({
+                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                to: String(file["email"]),
+                subject:
+                  String("Credencial #") + String(file["hash"]).substring(0, 8),
+                react: CredentialEmail({ data: file }),
               });
 
               if (error) {
