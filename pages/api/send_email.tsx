@@ -34,7 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               const { data, error } = await resend.emails.send({
                 from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
                 to: String(file["email"]),
-                subject: String("Certificado #") + file["hash"],
+                subject: String("Certificado #") + String(file["hash"]).substring(0, 8),
                 react: CertificateEmail({ data: file }),
               });
 
