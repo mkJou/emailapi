@@ -9,7 +9,7 @@
     "@react-email/tailwind": "0.0.14",
     "next": "latest",
     "nextjs-cors": "^2.2.0",
-    "react": "latest",
+    "react": "^18.2.0",
     "react-dom": "latest",
     "react-email": "2.0.0",
     "resend": "latest"
