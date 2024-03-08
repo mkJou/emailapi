@@ -182,7 +182,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 to: String(file["email"]),
                 subject:
                   String(file["name"]) +
-                  " te ha invitado al evento:" +
+                  " te ha invitado al evento: " +
                   String(file["eventName"]),
                 react: EventInvitationEmail({ data: file }),
               });
