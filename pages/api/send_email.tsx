@@ -6,6 +6,7 @@ import NormalEmail, { CertificateEmail } from "../../components/certificate";
 import NewUserInternal from "../../components/newUserInternal";
 import CredentialEmail from "../../components/credential";
 import OtpEmail from "../../components/otpEmail";
+import EventInvitationEmail from "../../components/eventInvitation";
 // import { OtpTemplate } from "../../components/otpTemplate";
 // import EventTemplate from "../../components/eventTemplate";
 // import EventFinishTemplate from "../../components/eventFinishTemplate";
@@ -147,6 +148,43 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 to: String(file["email"]),
                 subject: "Código de OTP para firma digital en Cryptohuella",
                 react: OtpEmail({ data: file }),
+              });
+
+              if (error) {
+                return res.status(400).json({ error });
+              }
+
+              blocks.push({ data });
+            } catch (error) {
+              return res.status(400).json({ error });
+            }
+          })
+        );
+      };
+
+      const loadDocuments = await printBlocks();
+
+      return res.json(blocks);
+    },
+    event_invitation: async () => {
+      let blocks = [];
+
+      const printBlocks = async () => {
+        const files = Array.from(dataArray?.users);
+
+        await Promise.all(
+          files.map(async (file) => {
+            let newL = [];
+
+            try {
+              const { data, error } = await resend.emails.send({
+                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                to: String(file["email"]),
+                subject:
+                  String(file["name"]) +
+                  " te ha invitado al evento:" +
+                  String(file["eventName"]),
+                react: EventInvitationEmail({ data: file }),
               });
 
               if (error) {
