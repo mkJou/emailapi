@@ -29,6 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     certiticate_notification: async () => {
       let blocks = [];
 
+      console.log("rrbb", dataArray)
       const printBlocks = async () => {
         const files = Array.from(dataArray?.users);
 

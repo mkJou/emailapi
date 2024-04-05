@@ -44,12 +44,8 @@ export const OtpEmail = ({ data }) => {
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               {" "}
-              A continuación este es tu código OTP para firmar electrónicamente
-              el bloque con hash{" "}
-              <strong className="capitalize">
-                ({String(data?.hash).substring(0, 16)})
-              </strong>
-              .
+              A continuación este es tu código 2FA para firmar electrónicamente
+              <strong className="capitalize">({data?.count}) bloque(s)</strong> de forma sencilla y rápida.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               <strong className="capitalize">Código de Seguridad</strong>
@@ -57,7 +53,14 @@ export const OtpEmail = ({ data }) => {
             <Text className="text-black text-center text-[14px] leading-[24px]">
               <strong className="capitalize">{String(data?.code)}</strong>
             </Text>
-
+            <Section className="text-center mt-[32px] mb-[32px]">
+              <Button
+                className="bg-gray-900 rounded-sm text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
+                href={data?.link}
+              >
+                CONFIRMACIÓN INSTANTANEA
+              </Button>
+            </Section>
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si no ha solicitado este código, por favor comunícate con nosotros
