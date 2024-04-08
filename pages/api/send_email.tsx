@@ -151,7 +151,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 to: String(file["email"]),
                 subject:
                   "Código de Seguridad para firmar digitalmente " +
-                  String(file?.count) +
+                  String(file["count"]) +
                   " bloque(s) en Cryptohuella",
                 react: OtpEmail({ data: file }),
               });
