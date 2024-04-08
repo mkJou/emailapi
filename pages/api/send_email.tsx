@@ -29,7 +29,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     certiticate_notification: async () => {
       let blocks = [];
 
-      console.log("rrbb", dataArray)
+      console.log("rrbb", dataArray);
       const printBlocks = async () => {
         const files = Array.from(dataArray?.users);
 
@@ -149,7 +149,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
               const { data, error } = await resend.emails.send({
                 from: "Seguridad de Cryptohuella <notificaciones@cryptohuella.com>",
                 to: String(file["email"]),
-                subject: "Código de OTP para firma digital en Cryptohuella",
+                subject:
+                  "Código de Seguridad para firmar digitalmente " +
+                  String(file?.count) +
+                  " bloque(s) en Cryptohuella",
                 react: OtpEmail({ data: file }),
               });
 

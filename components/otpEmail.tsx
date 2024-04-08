@@ -18,7 +18,7 @@ import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
 
 export const OtpEmail = ({ data }) => {
-  const previewText = `Nueva cuenta creada en Cryptohuella.`;
+  const previewText = `Código de Seguridad para firmar digitalmente.`;
 
   return (
     <Html>
@@ -37,21 +37,25 @@ export const OtpEmail = ({ data }) => {
               />
             </Section>
             <Heading className="text-black text-[18px] font-normal text-center p-0 my-[30px] mx-0">
-              <strong>Bienvenidp(a) a Cryptohuella</strong>
+              <strong>Código de Seguridad para Firma Digital</strong>
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
               Hola {data?.name},
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               {" "}
-              A continuación este es tu código 2FA para firmar electrónicamente
-              <strong className="capitalize">({data?.count}) bloque(s)</strong> de forma sencilla y rápida.
+              A continuación este es tu código de seguridad para firmar
+              digitalmente
+              <strong> ({data?.count}) bloque(s)</strong> de forma sencilla y
+              rápida.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               <strong className="capitalize">Código de Seguridad</strong>
             </Text>
             <Text className="text-black text-center text-[14px] leading-[24px]">
-              <strong className="capitalize">{String(data?.code)}</strong>
+              <strong className="capitalize text-[32px]">
+                {String(data?.code)}
+              </strong>
             </Text>
             <Section className="text-center mt-[32px] mb-[32px]">
               <Button
