@@ -150,7 +150,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 from: "Seguridad de Cryptohuella <notificaciones@cryptohuella.com>",
                 to: String(file["email"]),
                 subject:
-                  "Código de Seguridad para firmar digitalmente " +
+                  "Tú Código de Seguridad es: " +
+                  file["code"] +
+                  "para firmar digitalmente " +
                   String(file["count"]) +
                   " bloque(s) en Cryptohuella",
                 react: OtpEmail({ data: file }),

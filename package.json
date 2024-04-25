@@ -2,7 +2,7 @@
   "name": "with-nextjs-typescript",
   "private": true,
   "scripts": {
-    "dev": "next dev"
+    "dev": "sudo next dev"
   },
   "dependencies": {
     "@react-email/components": "0.0.14",
