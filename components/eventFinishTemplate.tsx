@@ -17,7 +17,7 @@ interface EventFinishTemplateProps {
   event?: any;
 }
 
-const baseUrl = `https://www.cryptohuella.com`;
+const baseUrl = `https://www.firmedigital.com`;
 
 export const EventFinishTemplate = ({
   user,
@@ -51,12 +51,12 @@ export const EventFinishTemplate = ({
 
             <Text style={text}>
               Tu código QR ha dejado de ser válido y se ha marcado como
-              CONFIRMADO por Cryptohuella.
+              CONFIRMADO por FirmeDigital.
             </Text>
 
             <Text style={text}>
               Un saludo. <br />
-              <br /> - Cryptohuella
+              <br /> - FirmeDigital
             </Text>
           </Section>
         </Container>

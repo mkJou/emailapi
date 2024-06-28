@@ -16,7 +16,7 @@ interface OtpTemplateProps {
   link?: string;
 }
 
-const baseUrl = `https://www.cryptohuella.com`;
+const baseUrl = `https://www.firmedigital.com`;
 
 export const EmailTemplate = ({ link }: OtpTemplateProps) => {
   return (
@@ -37,7 +37,7 @@ export const EmailTemplate = ({ link }: OtpTemplateProps) => {
             <Text style={text}>Hola estimado.</Text>
             <Text style={text}>
               Un nuevo certificado/credencial se ha creado con este correo.
-              Cryptohuella se encarga de notificarte para que estés al tanto. Si
+              FirmeDigital se encarga de notificarte para que estés al tanto. Si
               deseas ver dicho certificado/credencial puedes darle al botón "Ver
               certificado/credencial".
             </Text>
@@ -49,12 +49,12 @@ export const EmailTemplate = ({ link }: OtpTemplateProps) => {
             </Text> */}
             <Text style={text}>
               Si crees que es una transacción sospechosa, por favor comunicarte
-              con nosotros a través de soporte@cryptohuella.com
+              con nosotros a través de soporte@firmedigital.com
             </Text>
 
             <Text style={text}>
               Un saludo. <br />
-              <br /> - Bea de Cryptohuella.
+              <br /> - Bea de FirmeDigital.
             </Text>
           </Section>
         </Container>

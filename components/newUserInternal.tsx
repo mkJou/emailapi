@@ -18,7 +18,7 @@ import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
 
 export const NewUserInternal = ({ data }) => {
-  const previewText = `Nueva cuenta creada en Cryptohuella.`;
+  const previewText = `Nueva cuenta creada en FirmeDigital.`;
 
   return (
     <Html>
@@ -37,7 +37,7 @@ export const NewUserInternal = ({ data }) => {
               />
             </Section>
             <Heading className="text-black text-[18px] font-normal text-center p-0 my-[30px] mx-0">
-              <strong>Bienvenidp(a) a Cryptohuella</strong>
+              <strong>Bienvenidp(a) a FirmeDigital</strong>
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
               Hola {data?.name},
@@ -45,7 +45,7 @@ export const NewUserInternal = ({ data }) => {
             <Text className="text-black text-[14px] leading-[24px]">
               <strong className="capitalize">{String(data?.chain_name)}</strong>{" "}
               te ha registrado exitosamente como uno de sus usuarios internos en
-              Cryptohuella. Aquí tienes los datos de acceso a tu cuenta.
+              FirmeDigital. Aquí tienes los datos de acceso a tu cuenta.
               Recuerda que la contraseña colocada por el Administrador es de
               forma temporal, al iniciar sesión te pediremos que la cambies.
             </Text>
@@ -78,12 +78,12 @@ export const NewUserInternal = ({ data }) => {
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si crees que es una transacción sospechosa, por favor comunícate
               con nosotros a través de{" "}
-              <span className="text-black">soporte@cryptohuella.com</span>.
+              <span className="text-black">soporte@firmedigital.com</span>.
             </Text>
           </Container>
           <Container>
             <Text className="text-center text-[12px] text-gray-500">
-              &copy; 2024 Cryptohuella. Una creación de Emprendetec S.L.A
+              &copy; 2024 FirmeDigital. Una creación de Emprendetec S.L.A
               (www.emprendetec.es). Todos los derechos reservados a su
               respectivos dueños. <br />
               Calle Barcelonina 2, Planta 9, Pta.17. 46002 Valencia España.{" "}

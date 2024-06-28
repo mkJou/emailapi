@@ -18,7 +18,7 @@ import { Tailwind } from "@react-email/tailwind";
 import * as React from "react";
 
 export const CertificateEmail = ({ data }) => {
-  const previewText = `Has recibido un certificado de Cryptohuella.`;
+  const previewText = `Has recibido un certificado de FirmeDigital.`;
 
   return (
     <Html>
@@ -45,7 +45,7 @@ export const CertificateEmail = ({ data }) => {
             <Text className="text-black text-[14px] leading-[24px]">
               <strong className="capitalize">{String(data?.name)}</strong> te ha
               enviado un certificado que se ha asociado con este correo (
-              {data?.email}). Cryptohuella se encarga de notificarte para que
+              {data?.email}). FirmeDigital se encarga de notificarte para que
               estés al tanto. Si deseas ver dicho certificado puedes darle al
               botón "Ver certificado".
             </Text>
@@ -70,12 +70,12 @@ export const CertificateEmail = ({ data }) => {
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si crees que es una transacción sospechosa, por favor comunícate
               con nosotros a través de{" "}
-              <span className="text-black">soporte@cryptohuella.com</span>.
+              <span className="text-black">soporte@firmedigital.com</span>.
             </Text>
           </Container>
           <Container>
             <Text className="text-center text-[12px] text-gray-500">
-              &copy; 2024 Cryptohuella. Una creación de Emprendetec S.L.A
+              &copy; 2024 FirmeDigital. Una creación de Emprendetec S.L.A
               (www.emprendetec.es). Todos los derechos reservados a su
               respectivos dueños. <br />
               Calle Barcelonina 2, Planta 9, Pta.17. 46002 Valencia España.{" "}

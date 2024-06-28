@@ -54,7 +54,7 @@ export const EventInvitationEmail = ({ data }) => {
               ¡Así de fácil! 😲
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Este evento cuenta con la protección de Cryptohuella, al finalizar
+              Este evento cuenta con la protección de FirmeDigital, al finalizar
               el proceos te enviaremos confirmando tu registro y poniendo a
               disposición el Código QR que presentarás para ingresar al evento.
             </Text>
@@ -79,12 +79,12 @@ export const EventInvitationEmail = ({ data }) => {
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si tienes algún inconveniente o duda puedes contactarnos a través
               de
-              <span className="text-black">soporte@cryptohuella.com</span>.
+              <span className="text-black">soporte@firmedigital.com</span>.
             </Text>
           </Container>
           <Container>
             <Text className="text-center text-[12px] text-gray-500">
-              &copy; 2024 Cryptohuella. Una creación de Emprendetec S.L.A
+              &copy; 2024 FirmeDigital. Una creación de Emprendetec S.L.A
               (www.emprendetec.es). Todos los derechos reservados a su
               respectivos dueños. <br />
               Calle Barcelonina 2, Planta 9, Pta.17. 46002 Valencia España.{" "}

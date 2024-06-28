@@ -18,7 +18,7 @@ interface OtpTemplateProps {
   hash?: string;
 }
 
-const baseUrl = `https://www.cryptohuella.com`;
+const baseUrl = `https://www.firmedigital.com`;
 
 export const OtpTemplate = ({ code, user, hash }: OtpTemplateProps) => {
   return (
@@ -49,12 +49,12 @@ export const OtpTemplate = ({ code, user, hash }: OtpTemplateProps) => {
             </Text>
             <Text style={text}>
               Si no ha solicitado este código, puedes enviar un email a
-              soporte@cryptohuella.com detallando el caso.
+              soporte@firmedigital.com detallando el caso.
             </Text>
 
             <Text style={text}>
               Un saludo. <br />
-              <br /> - Bot de Seguridad de Cryptohuella
+              <br /> - Bot de Seguridad de FirmeDigital
             </Text>
           </Section>
         </Container>

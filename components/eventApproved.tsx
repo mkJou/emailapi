@@ -51,7 +51,7 @@ export const EventApprovedEmail = ({ data }) => {
               agregado.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Cryptohuella ha confirmado tu Código QR, por ende ha dejado de ser
+              FirmeDigital ha confirmado tu Código QR, por ende ha dejado de ser
               válido y se ha marcado como <strong>CONFIRMADO</strong>.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
@@ -77,12 +77,12 @@ export const EventApprovedEmail = ({ data }) => {
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si tienes algún inconveniente o duda puedes contactarnos a través
-              de <span className="text-black">soporte@cryptohuella.com</span>.
+              de <span className="text-black">soporte@firmedigital.com</span>.
             </Text>
           </Container>
           <Container>
             <Text className="text-center text-[12px] text-gray-500">
-              &copy; 2024 Cryptohuella. Una creación de Emprendetec S.L.A
+              &copy; 2024 FirmeDigital. Una creación de Emprendetec S.L.A
               (www.emprendetec.es). Todos los derechos reservados a su
               respectivos dueños. <br />
               Calle Barcelonina 2, Planta 9, Pta.17. 46002 Valencia España.{" "}

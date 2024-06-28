@@ -39,7 +39,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String("Certificado #") +
@@ -75,7 +75,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String("Credencial #") + String(file["hash"]).substring(0, 8),
@@ -110,7 +110,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String(file["chain_name"]) +
@@ -147,14 +147,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Seguridad de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Seguridad de FirmeDIgital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   "Tú Código de Seguridad es: " +
                   file["code"] +
                   " para firmar digitalmente " +
                   String(file["count"]) +
-                  " bloque(s) en Cryptohuella",
+                  " bloque(s) en FirmeDigital",
                 react: OtpEmail({ data: file }),
               });
 
@@ -186,7 +186,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String(file["name"]) +
@@ -223,7 +223,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String(file["name"]) +
@@ -260,7 +260,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
             try {
               const { data, error } = await resend.emails.send({
-                from: "Notificación de Cryptohuella <notificaciones@cryptohuella.com>",
+                from: "Notificación de FirmeDigital <notificaciones@firmedigital.com>",
                 to: String(file["email"]),
                 subject:
                   String(file["name"]) +
