@@ -29,7 +29,7 @@ export const EventInvitationEmail = ({ data }) => {
           <Container className="border border-solid border-[#eaeaea] rounded my-[40px] mx-auto p-[20px] max-w-[465px]">
             <Section className="mt-[32px]">
               <Img
-                src={`https://i.imgur.com/nEDMn0q.png`}
+                src={`https://i.imgur.com/8ywc2Mh.png`}
                 style={{ display: "block" }}
                 width="80px"
                 alt="Vercel"
