@@ -16,7 +16,14 @@ const resend = new Resend("re_ZwvRCDxH_rCBD93udyRrSiivxEzZrjBGM");
 // import { Button, Tailwind } from '@react-email/components';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const { template, dataArray, emailInfo } = req.body;
+
+  let query = req.body;
+
+  if (typeof query == "string") {
+    query = JSON.parse(query);
+  };
+  
+  const { template, dataArray, emailInfo } = query;
 
   await NextCors(req, res, {
     // Options
@@ -176,6 +183,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     },
     event_invitation: async () => {
       let blocks = [];
+
+      
 
       const printBlocks = async () => {
         const files = Array.from(dataArray?.users);
