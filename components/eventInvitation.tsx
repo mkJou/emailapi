@@ -40,46 +40,28 @@ export const EventInvitationEmail = ({ data }) => {
               <strong>¡Has recibido una invitación! 🎉</strong>
             </Heading>
             <Text className="text-black text-[14px] leading-[24px]">
-              Hola {data?.pName},
+              {data?.name},
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              <strong className="capitalize">{String(data?.name)}</strong> te ha
-              invitado a participar en el evento:{" "}
-              <strong className="capitalize">{String(data?.eventName)}</strong>,
-              a realizarle el <strong>{String(data?.eventDate)}</strong>.
+              Has sido preinscrito para participar en el evento:{" "}
+              <strong className="capitalize">{String(data?.eventInfo?.data?.name)}</strong>,
+              a realizarle el <strong>{String(new Date(data?.eventInfo?.data?.dateInit).toLocaleDateString("ve"))}</strong>.
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
-              Para finalizar tu registro solo debes darle click al botón de
-              abajo que lleva por nombre <strong>CONFIRMAR REGISTRO</strong>.
-              ¡Así de fácil! 😲
+              En las próximas horas te notificaremos si has sido confirmado o no para contar con tu presencia en este increible evento. 😲
             </Text>
             <Text className="text-black text-[14px] leading-[24px]">
               Este evento cuenta con la protección de FirmeDigital, al finalizar
-              el proceos te enviaremos confirmando tu registro y poniendo a
+              el proceso te enviaremos confirmando tu registro y poniendo a
               disposición el Código QR que presentarás para ingresar al evento.
             </Text>
-            <Section className="text-center mt-[32px] mb-[32px]">
-              <Button
-                className="bg-gray-900 rounded-sm text-white text-[12px] font-semibold no-underline text-center px-5 py-3"
-                href={data?.link}
-              >
-                Confirmar Registro
-              </Button>
-            </Section>
-            <Text className="text-black text-[14px] leading-[24px]">
-              O copie y pegue esta URL en su navegador: <br />
-              <Link
-                href={data?.link}
-                className="text-blue-600 text-xs no-underline"
-              >
-                {data?.link}
-              </Link>
-            </Text>
+       
+          
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               Si tienes algún inconveniente o duda puedes contactarnos a través
               de
-              <span className="text-black">soporte@firmedigital.com</span>.
+              {" "} <span className="text-black">soporte@firmedigital.com</span>.
             </Text>
           </Container>
           <Container>
