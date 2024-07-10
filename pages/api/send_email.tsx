@@ -218,7 +218,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
       const loadDocuments = await printBlocks();
 
+      console.log(">>", file);
       return res.json(blocks);
+      
     },
     event_confirmation: async () => {
       let blocks = [];
